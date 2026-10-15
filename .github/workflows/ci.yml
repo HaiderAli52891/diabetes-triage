@@ -1,4 +1,3 @@
-
 name: CI - Tests and Lint
 
 on:
@@ -30,14 +29,14 @@ jobs:
           pip install -r requirements.txt
           pip install -r requirements-dev.txt
 
+      - name: Train model
+        run: python src/train.py
+
       - name: Run lint
         run: ruff check .
 
       - name: Run tests
         run: python -m pytest -q
-
-      - name: Training smoke test
-        run: python src/train.py
 
       - name: Upload training artifacts
         if: always()
